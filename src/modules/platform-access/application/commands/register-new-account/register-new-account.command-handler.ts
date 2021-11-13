@@ -1,4 +1,4 @@
-import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { AccountRegistration } from 'src/modules/platform-access/core/account-registration/account-registration.aggregate-root';
 import { AccountRegistrationRepository } from 'src/modules/platform-access/core/account-registration/account-registration.repository';
 import { AccountEmailCheckerService } from 'src/modules/shared-kernel/core/account-email/account-email-checker.service';
@@ -17,6 +17,7 @@ export class RegisterNewAccountCommandHandler
     private readonly accountEmailCheckerService: AccountEmailCheckerService,
     @Inject('passwordHashProviderService')
     private readonly passwordHashProviderService: PasswordHashProviderService,
+    private readonly eventBus: EventBus,
   ) {}
 
   public async execute(command: RegisterNewAccountCommand) {
@@ -32,6 +33,10 @@ export class RegisterNewAccountCommandHandler
     });
 
     const trx = await this.accountRegistrationRepository.insert(accountRegistration);
+
+    this.eventBus.publishAll(accountRegistration.getUncommittedEvents());
+
+    this.eventBus.register();
 
     accountRegistration.commit();
 

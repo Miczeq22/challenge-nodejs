@@ -4,6 +4,8 @@ import { RegisterNewAccountDTO } from 'src/modules/platform-access/dtos/register
 import { RegisterNewAccountCommand } from 'src/modules/platform-access/application/commands/register-new-account/register-new-account.command';
 import { NextFunction, Response as ExpressResponse } from 'express';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { LoginCommand } from '../../application/commands/login/login.command';
+import { LoginDTO } from '../../dtos/login.dto';
 
 @ApiTags('Platform Access')
 @Controller('platform-access')
@@ -34,6 +36,33 @@ export class PlatformAccessController {
     this.commandBus
       .execute(new RegisterNewAccountCommand(registerNewAccountDTO))
       .then(() => res.sendStatus(201))
+      .catch(next);
+  }
+
+  @ApiOperation({
+    summary: 'Login to platform.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Logged in successfully.',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized.',
+  })
+  @Post('login')
+  public login(
+    @Body() loginDTO: LoginDTO,
+    @Response() res: ExpressResponse,
+    @Next() next: NextFunction,
+  ) {
+    this.commandBus
+      .execute(new LoginCommand(loginDTO))
+      .then((accessToken) =>
+        res.status(200).json({
+          accessToken,
+        }),
+      )
       .catch(next);
   }
 }

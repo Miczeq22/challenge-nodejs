@@ -5,7 +5,7 @@ import { AccountEmail } from 'src/modules/shared-kernel/core/account-email/accou
 import { AccountPassword } from 'src/modules/shared-kernel/core/account-password/account-password.value-object';
 import { PasswordHashProviderService } from 'src/modules/shared-kernel/core/account-password/password-hash-provider.service';
 import { RegisterNewAccountDTO } from 'src/modules/platform-access/dtos/register-new-account.dto';
-import { NewAccountRegisteredEvent } from './events/new-account-registered.domain-event';
+import { NewAccountRegisteredEvent } from './events/new-account-registered.event';
 
 interface AccountRegistrationProps {
   email: AccountEmail;
