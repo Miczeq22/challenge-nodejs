@@ -19,7 +19,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       });
     }
 
-    const status = exception.errorCode;
+    const status = exception.errorCode ?? 500;
 
     response.status(status).json({
       message: exception.message,
