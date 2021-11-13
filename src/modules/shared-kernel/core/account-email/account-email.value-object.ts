@@ -1,6 +1,6 @@
 import { ValueObject } from 'src/framework/value-object';
-import { EmailFormatIsInvalidError } from '../errors/email-format-is-invalid.error';
-import { EmailIsAlreadyTakenError } from '../errors/email-is-already-taken.error';
+import { EmailFormatIsInvalidError } from 'src/modules/shared-kernel/errors/email-format-is-invalid.error';
+import { EmailIsAlreadyTakenError } from 'src/modules/shared-kernel/errors/email-is-already-taken.error';
 import { AccountEmailCheckerService } from './account-email-checker.service';
 import { EmailFormatMustBeValidRule } from './rules/email-format-must-be-valid.rule';
 import { EmailMustBeUniqueRule } from './rules/email-must-unique.rule';
