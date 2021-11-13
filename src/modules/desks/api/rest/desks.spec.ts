@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ReserveDeskHandler } from '../../../application/command/reserve-desk.handler';
-import { DesksModule } from '../../../desks.module';
-import { ReserveDeskCommand } from '../../../domain/command/reserve-desk';
+import { ReserveDeskCommand } from '../../application/commands/reserve-desk/reserve-desk.command';
+import { ReserveDeskCommandHandler } from '../../application/commands/reserve-desk/reserve-desk.command-handler';
+import { DesksModule } from '../../desks.module';
 import { DesksController } from './desks';
 
 describe('DesksController', () => {
   let desksController: DesksController;
-  let reserveDeskHandler: ReserveDeskHandler;
+  let reserveDeskHandler: ReserveDeskCommandHandler;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
@@ -16,7 +16,7 @@ describe('DesksController', () => {
     await app.init();
 
     desksController = app.get<DesksController>(DesksController);
-    reserveDeskHandler = app.get<ReserveDeskHandler>(ReserveDeskHandler);
+    reserveDeskHandler = app.get<ReserveDeskCommandHandler>(ReserveDeskCommandHandler);
   });
 
   describe('reserve', () => {

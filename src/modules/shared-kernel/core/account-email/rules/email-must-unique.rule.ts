@@ -1,5 +1,5 @@
 import { BusinessRule } from 'src/framework/business-rule';
-import { AccountEmailCheckerService } from '../account-email-checker.service';
+import { AccountEmailCheckerService } from 'src/modules/shared-kernel/core/account-email/account-email-checker.service';
 
 export class EmailMustBeUniqueRule extends BusinessRule {
   message = 'Provided email address is already in use.';

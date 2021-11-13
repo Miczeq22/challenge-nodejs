@@ -1,6 +1,6 @@
 import { Controller, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { ReserveDeskCommand } from '../../application/commands/reserve-desk/reserve-desk.command';
+import { ReserveDeskCommand } from 'src/modules/desks/application/commands/reserve-desk/reserve-desk.command';
 
 @Controller('desks')
 export class DesksController {
