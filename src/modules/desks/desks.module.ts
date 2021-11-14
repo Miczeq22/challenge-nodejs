@@ -3,6 +3,8 @@ import { ReserveDeskCommandHandler } from './application/commands/reserve-desk/r
 import { DesksController } from './api/rest/desks';
 import { CqrsModule } from '@nestjs/cqrs';
 import { PassportModule } from '@nestjs/passport';
+import { GetAllDesksQueryHandler } from './application/queries/get-all-desks/get-all-desks.query-handler';
+import { postgresQueryBuilder } from '../../infrastructure/database/query-builder';
 
 @Module({
   imports: [
@@ -12,6 +14,13 @@ import { PassportModule } from '@nestjs/passport';
     }),
   ],
   controllers: [DesksController],
-  providers: [ReserveDeskCommandHandler],
+  providers: [
+    ReserveDeskCommandHandler,
+    GetAllDesksQueryHandler,
+    {
+      provide: 'queryBuilder',
+      useValue: postgresQueryBuilder(),
+    },
+  ],
 })
 export class DesksModule {}

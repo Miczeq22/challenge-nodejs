@@ -12,7 +12,7 @@ import { NewAccountRegisteredSubscriber } from './application/subscribers/new-ac
 import { UserLoggedInSubscriber } from './application/subscribers/user-logged-in/user-logged-in.subscriber';
 import { AccountRegistrationRepositoryImpl } from './infrastructure/account-registration/account-registration.repository';
 import { AccountRepositoryImpl } from './infrastructure/account/account.repository';
-import { JwtStrategy } from './infrastructure/jwt-strategy/jwt.strategy';
+import { JwtStrategy } from '../../api/jwt-strategy/jwt.strategy';
 
 @Module({
   imports: [
