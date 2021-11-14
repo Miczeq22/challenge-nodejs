@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Next,
   Param,
@@ -23,6 +24,7 @@ import {
 import { NextFunction, Request as ExpressRequest, Response as ExpressResponse } from 'express';
 import { ReserveDeskCommand } from 'src/modules/desks/application/commands/reserve-desk/reserve-desk.command';
 import { JwtAuthResult } from '../../../../api/jwt-strategy/jwt.strategy';
+import { CancelDeskReservationCommand } from '../../application/commands/cancel-desk-reservation/cancel-desk-reservation.command';
 import { GetAllDesksQuery } from '../../application/queries/get-all-desks/get-all-desks.query';
 import { DeskCatalogueItemDTO } from '../../dtos/desk-catalogue-item.dto';
 import { ReserveDeskBodyDTO } from '../../dtos/reserve-desk.dto';
@@ -77,6 +79,18 @@ export class DesksController {
     required: true,
     description: 'ID of desk',
   })
+  @ApiResponse({
+    status: 201,
+    description: 'Desk reserved successfuly.',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Unauthorized.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Desk does not exist.',
+  })
   public reserve(
     @Param('id') deskId: string,
     @Request() req: ExpressRequest,
@@ -94,6 +108,43 @@ export class DesksController {
         }),
       )
       .then(() => res.sendStatus(201))
+      .catch(next);
+  }
+
+  @ApiResponse({
+    status: 204,
+    description: 'Desk reserved successfuly.',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Unauthorized.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Desk is not currently reserved by user.',
+  })
+  @ApiParam({
+    name: 'reservationId',
+    type: 'string',
+    required: true,
+  })
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  @Delete(':reservationId/reserve')
+  public cancelReservation(
+    @Param('reservationId') reservationId: string,
+    @Request() req: ExpressRequest,
+    @Response() res: ExpressResponse,
+    @Next() next: NextFunction,
+  ) {
+    this.commandBus
+      .execute(
+        new CancelDeskReservationCommand({
+          reservationId,
+          userId: (req.user as JwtAuthResult).id,
+        }),
+      )
+      .then(() => res.sendStatus(204))
       .catch(next);
   }
 }

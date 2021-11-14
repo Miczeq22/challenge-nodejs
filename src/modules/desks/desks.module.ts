@@ -8,6 +8,8 @@ import { postgresQueryBuilder } from '../../infrastructure/database/query-builde
 import { DeskHasBeenReservedSubscriber } from './application/subscribers/desk-has-been-reserved/desk-has-been-reserved.subscriber';
 import { UserReservationConsoleRepositoryImpl } from './infrastructure/user-reservation-console/user-reservation-console.repository';
 import { DeskProviderServiceImpl } from './infrastructure/desk/desk-provider.service';
+import { DeskReservationHasBeenCanceledSubscriber } from './application/subscribers/desk-reservation-has-been-canceled/desk-reservation-has-been-canceled.subscriber';
+import { CancelDeskReservationCommandHandler } from './application/commands/cancel-desk-reservation/cancel-desk-reservation.command-handler';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { DeskProviderServiceImpl } from './infrastructure/desk/desk-provider.ser
     ReserveDeskCommandHandler,
     GetAllDesksQueryHandler,
     DeskHasBeenReservedSubscriber,
+    DeskReservationHasBeenCanceledSubscriber,
+    CancelDeskReservationCommandHandler,
     {
       provide: 'queryBuilder',
       useValue: postgresQueryBuilder(),
