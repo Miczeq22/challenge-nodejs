@@ -12,6 +12,7 @@ export async function up(knex: Knex): Promise<void> {
     table.timestamp('start_at').notNullable();
     table.timestamp('end_at').notNullable();
     table.string('status').notNullable();
+    table.timestamp('reserved_at').notNullable();
 
     table.foreign('account_id').references('id').inTable('account');
     table.foreign('desk_id').references('id').inTable('desk');

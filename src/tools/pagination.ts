@@ -1,10 +1,14 @@
+import { IsInt } from 'class-validator';
+
 export interface PaginatedResponse<T> {
   total: number;
   items: T[];
 }
 
-export interface PaginatedRequest {
+export class PaginatedRequest {
+  @IsInt()
   start?: number;
+  @IsInt()
   limit?: number;
 }
 

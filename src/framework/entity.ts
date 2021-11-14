@@ -28,7 +28,7 @@ export class Entity<EntityProps> {
   }
 
   public getId() {
-    return this.id;
+    return this.id.getValue();
   }
 
   public equals(object: Entity<EntityProps>): boolean {
