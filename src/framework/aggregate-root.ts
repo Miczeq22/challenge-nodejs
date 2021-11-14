@@ -24,6 +24,10 @@ export class AggregateRoot<AggregateProps> extends NestAggregateRoot {
         }
       });
     }
+
+    if (rule.isBroken()) {
+      throw new ErrorType(rule.message);
+    }
   }
 
   public getId() {

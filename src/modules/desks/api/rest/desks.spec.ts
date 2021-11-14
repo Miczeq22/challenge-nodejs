@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ReserveDeskCommand } from '../../application/commands/reserve-desk/reserve-desk.command';
 import { ReserveDeskCommandHandler } from '../../application/commands/reserve-desk/reserve-desk.command-handler';
 import { DesksModule } from '../../desks.module';
-import { DesksController } from './desks';
+import { DesksController } from './desks.controller';
 
 describe('DesksController', () => {
   let desksController: DesksController;

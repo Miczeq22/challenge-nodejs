@@ -1,5 +1,5 @@
+import { ReserveDeskDTO } from '../../../dtos/reserve-desk.dto';
+
 export class ReserveDeskCommand {
-  constructor() {
-    //
-  }
+  constructor(public readonly payload: ReserveDeskDTO) {}
 }

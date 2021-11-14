@@ -1,32 +1,32 @@
 import { ValueObject } from '../../../../framework/value-object';
 import { DeskStatusNotSupportedError } from '../../errors/desk-status-not-supported.error';
 
-export enum DeskStatusValue {
+export enum ReservationStatusValue {
   Confirmed = 'CONFIRMED',
   Paid = 'PAID',
 }
 
-interface DeskStatusProps {
+interface ReservationStatusProps {
   value: string;
 }
 
-export class DeskStatus extends ValueObject<DeskStatusProps> {
+export class ReservationStatus extends ValueObject<ReservationStatusProps> {
   private constructor(value: string) {
     super({
       value,
     });
   }
 
-  public static Confirmed = new DeskStatus(DeskStatusValue.Confirmed);
+  public static Confirmed = new ReservationStatus(ReservationStatusValue.Confirmed);
 
-  public static Paid = new DeskStatus(DeskStatusValue.Paid);
+  public static Paid = new ReservationStatus(ReservationStatusValue.Paid);
 
   public static fromValue(value: string) {
     switch (value) {
-      case DeskStatusValue.Confirmed:
+      case ReservationStatusValue.Confirmed:
         return this.Confirmed;
 
-      case DeskStatusValue.Paid:
+      case ReservationStatusValue.Paid:
         return this.Paid;
 
       default:

@@ -9,6 +9,10 @@ export interface JwtPayload {
   sub: string;
 }
 
+export interface JwtAuthResult {
+  id: string;
+}
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(@Inject('queryBuilder') private readonly queryBuilder: QueryBuilder) {
@@ -18,7 +22,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  public async validate({ sub }: JwtPayload) {
+  public async validate({ sub }: JwtPayload): Promise<JwtAuthResult> {
     const result = await this.queryBuilder
       .select(['id'])
       .where('id', sub)
