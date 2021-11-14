@@ -1,10 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { Strategy } from 'passport-local';
+import { ExtractJwt, Strategy } from 'passport-jwt';
 import { UnauthorizedError } from '../../errors/unauthorized.error';
 import { QueryBuilder } from '../../infrastructure/database/query-builder';
 import { TableNames } from '../../infrastructure/database/table-names';
-import { ExtractJwt } from 'passport-jwt';
 
 export interface JwtPayload {
   sub: string;
@@ -15,20 +14,21 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(@Inject('queryBuilder') private readonly queryBuilder: QueryBuilder) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: process.env.JWT_SECRET,
     });
   }
 
-  public async validate(payload: JwtPayload) {
-    const user = await this.queryBuilder
-      .select('id')
-      .where('id', payload.sub)
+  public async validate({ sub }: JwtPayload) {
+    const result = await this.queryBuilder
+      .select(['id'])
+      .where('id', sub)
       .from(TableNames.Account)
       .first();
 
-    if (!user) {
+    if (!result) {
       throw new UnauthorizedError();
     }
 
-    return user;
+    return result;
   }
 }
