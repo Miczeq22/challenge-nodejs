@@ -18,14 +18,14 @@ export class UserReservationConsoleRepositoryImpl implements UserReservationCons
     }
 
     const currentlyReservedDesks = await this.queryBuilder
-      .select(['desk_id'])
+      .select(['id', 'desk_id AS deskId'])
       .where('account_id', userId)
       .andWhere('end_at', '>=', new Date().toISOString())
       .from(TableNames.DeskReservation);
 
     return UserReservationConsole.fromPersistence({
+      currentlyReservedDesks,
       id: userId,
-      currentlyReservedDeskIDs: currentlyReservedDesks.map(({ desk_id }) => desk_id),
     });
   }
 }
