@@ -1,4 +1,4 @@
-import { BusinessRule } from 'src/framework/business-rule';
+import { BusinessRule } from '../../../../../framework/business-rule';
 
 export class EmailFormatMustBeValidRule extends BusinessRule {
   message = 'Provided email format is not valid.';

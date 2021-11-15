@@ -1,4 +1,4 @@
-import { ValueObject } from 'src/framework/value-object';
+import { ValueObject } from '../../../../framework/value-object';
 import { PasswordHashProviderService } from './password-hash-provider.service';
 import { PasswordMustBeStrongRule } from './rules/password-must-be-strong.rule';
 

@@ -1,10 +1,11 @@
 import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
-import { AccountRegistration } from 'src/modules/platform-access/core/account-registration/account-registration.aggregate-root';
-import { AccountRegistrationRepository } from 'src/modules/platform-access/core/account-registration/account-registration.repository';
-import { AccountEmailCheckerService } from 'src/modules/shared-kernel/core/account-email/account-email-checker.service';
-import { PasswordHashProviderService } from 'src/modules/shared-kernel/core/account-password/password-hash-provider.service';
-import { RegisterNewAccountCommand } from 'src/modules/platform-access/application/commands/register-new-account/register-new-account.command';
+
 import { Inject } from '@nestjs/common';
+import { RegisterNewAccountCommand } from './register-new-account.command';
+import { AccountRegistrationRepository } from '../../../core/account-registration/account-registration.repository';
+import { AccountEmailCheckerService } from '../../../../shared-kernel/core/account-email/account-email-checker.service';
+import { PasswordHashProviderService } from '../../../../shared-kernel/core/account-password/password-hash-provider.service';
+import { AccountRegistration } from '../../../core/account-registration/account-registration.aggregate-root';
 
 @CommandHandler(RegisterNewAccountCommand)
 export class RegisterNewAccountCommandHandler

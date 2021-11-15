@@ -1,6 +1,6 @@
 import { AggregateRoot as NestAggregateRoot } from '@nestjs/cqrs';
-import { AppError } from 'src/errors/app.error';
-import { BusinessRuleValidationError } from 'src/errors/business-rule-validation.error';
+import { AppError } from '../errors/app.error';
+import { BusinessRuleValidationError } from '../errors/business-rule-validation.error';
 import { AsyncFunction } from './async-function';
 import { BusinessRule } from './business-rule';
 import { UniqueEntityID } from './unique-entity-id';

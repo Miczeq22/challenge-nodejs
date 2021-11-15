@@ -1,10 +1,10 @@
-import { AggregateRoot } from 'src/framework/aggregate-root';
-import { UniqueEntityID } from 'src/framework/unique-entity-id';
-import { AccountEmailCheckerService } from 'src/modules/shared-kernel/core/account-email/account-email-checker.service';
-import { AccountEmail } from 'src/modules/shared-kernel/core/account-email/account-email.value-object';
-import { AccountPassword } from 'src/modules/shared-kernel/core/account-password/account-password.value-object';
-import { PasswordHashProviderService } from 'src/modules/shared-kernel/core/account-password/password-hash-provider.service';
-import { RegisterNewAccountDTO } from 'src/modules/platform-access/dtos/register-new-account.dto';
+import { AggregateRoot } from '../../../../framework/aggregate-root';
+import { UniqueEntityID } from '../../../../framework/unique-entity-id';
+import { AccountEmailCheckerService } from '../../../shared-kernel/core/account-email/account-email-checker.service';
+import { AccountEmail } from '../../../shared-kernel/core/account-email/account-email.value-object';
+import { AccountPassword } from '../../../shared-kernel/core/account-password/account-password.value-object';
+import { PasswordHashProviderService } from '../../../shared-kernel/core/account-password/password-hash-provider.service';
+import { RegisterNewAccountDTO } from '../../dtos/register-new-account.dto';
 import { NewAccountRegisteredEvent } from './events/new-account-registered.event';
 
 interface AccountRegistrationProps {
