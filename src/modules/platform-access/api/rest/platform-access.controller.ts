@@ -1,11 +1,11 @@
 import { Body, Controller, Next, Post, Response } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { RegisterNewAccountDTO } from 'src/modules/platform-access/dtos/register-new-account.dto';
-import { RegisterNewAccountCommand } from 'src/modules/platform-access/application/commands/register-new-account/register-new-account.command';
 import { NextFunction, Response as ExpressResponse } from 'express';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { LoginCommand } from '../../application/commands/login/login.command';
 import { LoginDTO } from '../../dtos/login.dto';
+import { RegisterNewAccountCommand } from '../../application/commands/register-new-account/register-new-account.command';
+import { RegisterNewAccountDTO } from '../../dtos/register-new-account.dto';
 
 @ApiTags('Platform Access')
 @Controller('platform-access')

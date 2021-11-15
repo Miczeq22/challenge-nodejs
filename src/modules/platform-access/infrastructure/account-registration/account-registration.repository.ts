@@ -1,8 +1,8 @@
 import { Inject } from '@nestjs/common';
-import { QueryBuilder } from 'src/infrastructure/database/query-builder';
-import { TableNames } from 'src/infrastructure/database/table-names';
-import { AccountRegistration } from 'src/modules/platform-access/core/account-registration/account-registration.aggregate-root';
-import { AccountRegistrationRepository } from 'src/modules/platform-access/core/account-registration/account-registration.repository';
+import { QueryBuilder } from '../../../../infrastructure/database/query-builder';
+import { TableNames } from '../../../../infrastructure/database/table-names';
+import { AccountRegistration } from '../../core/account-registration/account-registration.aggregate-root';
+import { AccountRegistrationRepository } from '../../core/account-registration/account-registration.repository';
 
 export class AccountRegistrationRepositoryImpl implements AccountRegistrationRepository {
   constructor(@Inject('queryBuilder') private readonly queryBuilder: QueryBuilder) {}

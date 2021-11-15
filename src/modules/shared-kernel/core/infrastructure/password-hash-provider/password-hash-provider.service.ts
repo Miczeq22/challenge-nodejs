@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { PasswordHashProviderService } from 'src/modules/shared-kernel/core/account-password/password-hash-provider.service';
+import { PasswordHashProviderService } from '../../account-password/password-hash-provider.service';
 
 @Injectable()
 export class PasswordHashProviderServiceImpl implements PasswordHashProviderService {

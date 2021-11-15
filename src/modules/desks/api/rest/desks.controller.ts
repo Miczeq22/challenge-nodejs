@@ -22,9 +22,9 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { NextFunction, Request as ExpressRequest, Response as ExpressResponse } from 'express';
-import { ReserveDeskCommand } from 'src/modules/desks/application/commands/reserve-desk/reserve-desk.command';
 import { JwtAuthResult } from '../../../../api/jwt-strategy/jwt.strategy';
 import { CancelDeskReservationCommand } from '../../application/commands/cancel-desk-reservation/cancel-desk-reservation.command';
+import { ReserveDeskCommand } from '../../application/commands/reserve-desk/reserve-desk.command';
 import { GetAllDesksQuery } from '../../application/queries/get-all-desks/get-all-desks.query';
 import { DeskCatalogueItemDTO } from '../../dtos/desk-catalogue-item.dto';
 import { ReserveDeskBodyDTO } from '../../dtos/reserve-desk.dto';

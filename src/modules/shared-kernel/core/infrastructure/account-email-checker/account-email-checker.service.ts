@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { QueryBuilder } from 'src/infrastructure/database/query-builder';
-import { TableNames } from 'src/infrastructure/database/table-names';
-import { AccountEmailCheckerService } from 'src/modules/shared-kernel/core/account-email/account-email-checker.service';
+import { QueryBuilder } from '../../../../../infrastructure/database/query-builder';
+import { TableNames } from '../../../../../infrastructure/database/table-names';
+import { AccountEmailCheckerService } from '../../account-email/account-email-checker.service';
 
 @Injectable()
 export class AccountEmailCheckerServiceImpl implements AccountEmailCheckerService {

@@ -1,4 +1,4 @@
-import { AppError } from 'src/errors/app.error';
+import { AppError } from '../../../errors/app.error';
 
 export class EmailFormatIsInvalidError extends AppError {
   constructor(message = 'Provided email format is invalid.') {
